@@ -1,35 +1,34 @@
 
 (() => {
-  const forms = document.querySelectorAll('.needs-validation');
+  const form = document.getElementById('contactForm');
 
-  forms.forEach(form => {
-    form.addEventListener('submit', event => {
+  form.addEventListener('submit', event => {
 
-      event.preventDefault();
-      event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
 
-      if (form.checkValidity()) {
+    if (form.checkValidity()) {
 
-        form.classList.add('was-validated');
+      form.classList.add('was-validated');
 
-        const modalEl = form.closest('.modal');
-        const modal = bootstrap.Modal.getInstance(modalEl);
-        modal.hide();
+      const modalEl = form.closest('.modal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
 
-        const toastEl = document.getElementById('successToast');
-        const toast = new bootstrap.Toast(toastEl);
-        toast.show();
+      const toastEl = document.getElementById('successToast');
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
 
-        setTimeout(() => {
-          form.reset();
-          form.classList.remove('was-validated');
-        }, 300);
+      setTimeout(() => {
+        form.reset();
+        form.classList.remove('was-validated');
+      }, 300);
 
-      } else {
-        form.classList.add('was-validated');
-      }
-    });
+    } else {
+      form.classList.add('was-validated');
+    }
   });
+
 })();
 
 function markLoaded(img) {
@@ -73,7 +72,7 @@ const destinosObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '200px' });
 
 
-function nav_Section (idSection){
+function nav_Section(idSection) {
   document.getElementById(idSection).scrollIntoView({
     behavior: "smooth"
   });
@@ -92,16 +91,16 @@ const btnsConsult = document.querySelectorAll('.consult-button');
 
 const selectOpt = document.getElementById('destination-selected');
 
-btnsConsult.forEach(function(btn){
+btnsConsult.forEach(function (btn) {
   btn.addEventListener("click", () => {
 
     document.getElementById('form-section').style.display = 'flex';
 
-    
+
 
     selectOpt.value = btn.dataset.destination;
 
-   
+
     selectOpt.dispatchEvent(new Event('change'));
 
 
@@ -122,31 +121,31 @@ function costeHotel(noches) {
 
 function costeAvion(nombreCiudad) {
   let precioAvion = 0;
-  switch(nombreCiudad){
-      case "Paris":
-          precioAvion = 180;
-          break;
-      case "Boston":
-          precioAvion = 600;
-          break;
-      case "Londres":
-          precioAvion = 120;
-          break;
-      case "Roma":
-          precioAvion = 130;
-          break;
-      case "Sevilla":
-          precioAvion = 80;
-          break;
-      case "Rio":
-          precioAvion = 1400;
-          break;
-      case "Kioto":
-          precioAvion = 1100;
-          break;
-      case "Buenos Aires":
-          precioAvion = 1200;
-          break;
+  switch (nombreCiudad) {
+    case "Paris":
+      precioAvion = 180;
+      break;
+    case "Boston":
+      precioAvion = 600;
+      break;
+    case "Londres":
+      precioAvion = 120;
+      break;
+    case "Roma":
+      precioAvion = 130;
+      break;
+    case "Sevilla":
+      precioAvion = 80;
+      break;
+    case "Rio":
+      precioAvion = 1400;
+      break;
+    case "Kioto":
+      precioAvion = 1100;
+      break;
+    case "Buenos Aires":
+      precioAvion = 1200;
+      break;
   }
 
   return precioAvion;
@@ -159,15 +158,15 @@ function costeCoche(diasAlquiler) {
 
   let descuento = 0;
 
-  if(diasAlquiler >= 7) {
-      descuento = 50;
-  } else if(diasAlquiler >= 3) {
-      descuento = 20;
-  } 
+  if (diasAlquiler >= 7) {
+    descuento = 50;
+  } else if (diasAlquiler >= 3) {
+    descuento = 20;
+  }
 
   const precioTotal = precioBase - descuento;
 
-  return {precioBase, precioTotal, descuento};
+  return { precioBase, precioTotal, descuento };
 
 }
 
@@ -182,46 +181,47 @@ function costeViaje() {
 
   const totalViaje = document.getElementById('precio-total');
 
-  boton.addEventListener('click', () => {
-
-      descuento.textContent = ""
-
-      let noches = document.getElementById('num-night').value;
-      let ciudad = document.getElementById('destination-selected').value;
-      let diasAlquiler = document.getElementById('num-day').value;
-      let numPersonas = document.getElementById('num-people').value;
-      console.log(numPersonas);
 
 
-      const precioHotel = costeHotel(noches);
-      const precioAvion = costeAvion(ciudad);
-      const precioCoche = costeCoche(diasAlquiler);
+  descuento.textContent = ""
 
-  
-      hotel.textContent = precioHotel;
-      vuelo.textContent = precioAvion;
-      coche.textContent = precioCoche.precioBase;
-     
+  let noches = document.getElementById('num-night').value;
+  let ciudad = document.getElementById('destination-selected').value;
+  let diasAlquiler = document.getElementById('num-day').value;
+  let numPersonas = document.getElementById('num-people').value;
 
-      if(precioCoche.descuento > 0) {
-          descuento.textContent = ` -${precioCoche.descuento}€ descuento`
-      }
-  
-      precioPersona.textContent = precioHotel + precioAvion + precioCoche.precioTotal;
-      let precioFinal = precioCoche.precioTotal + ((precioHotel + precioAvion) * numPersonas);
-  
-      totalViaje.textContent = `${precioFinal} €`;
 
-      const seccion = document.getElementById("price");
-      const offset = 150; // 150px antes de la sección
 
-      window.scrollTo({
-        top: seccion.offsetTop - offset,
-        behavior: "smooth"
-      });
-    
+  const precioHotel = costeHotel(noches);
+  const precioAvion = costeAvion(ciudad);
+  const precioCoche = costeCoche(diasAlquiler);
 
+
+  hotel.textContent = precioHotel;
+  vuelo.textContent = precioAvion;
+  coche.textContent = precioCoche.precioBase;
+
+
+  if (precioCoche.descuento > 0) {
+    descuento.textContent = ` -${precioCoche.descuento}€ descuento`
+  }
+
+  precioPersona.textContent = precioHotel + precioAvion + precioCoche.precioTotal;
+  let precioFinal = precioCoche.precioTotal + ((precioHotel + precioAvion) * numPersonas);
+
+  totalViaje.textContent = `${precioFinal} €`;
+
+  const seccion = document.getElementById("price");
+  const offset = 150; // 150px antes de la sección
+
+
+  window.scrollTo({
+    top: seccion.offsetTop - offset,
+    behavior: "smooth"
   });
+
+
+
 
 }
 
