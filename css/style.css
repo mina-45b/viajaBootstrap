@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pliant:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Pliant", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --color-blue: #003477;
+    --color-blue-light: #085CA6;
+    --color-light: #ffffff;
+    --color-dark: #3d3a4e;
+}
+
+.navbar-inicio {
+    background-image: url("../assets/images/backgrounds/background-image1.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+
+
+#inicio{
+    padding-top: 100px !important; /* altura del navbar */
+    min-height: 100vh;
+}
+
+#destinos {
+    background-image: url("../assets/images/backgrounds/background-image2.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding-top: 150px !important; /* altura del navbar */
+    min-height: 100vh;
+    content-visibility: auto;
+    contain-intrinsic-size: 100vh;
+}
+
+#form-section {
+    background-image: url("../assets/images/backgrounds/background-image3.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding-top: 150px;
+    background-color: var(--color-blue);
+    min-height: 100vh;
+
+    display: none;  
+}
+
+
+
+/* ------- navbar --------*/
+
+.glass-nav {
+
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+  
+}
+
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-blue-light) !important;
+}
+
+.nav-link {
+    position:relative;
+    transition-delay: 0.5s;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: var(--color-blue-light);
+    transition: 0.5s ease;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+.nav-link:visited {
+    color: var(--color-blue-light);
+}
+
+/* --------- texto --------------*/
+
+.text {
+    color: var(--color-blue);
+}
+
+.spacing-text, .carousel-inner h5{
+    letter-spacing: .2rem ;
+}
+
+
+/*------------- offcanva --------------*/
+
+.offcanvas {
+    width: 420px;
+}
+
+.map-container {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 350px;
+    border: 0;
+    display: block;
+}
+
+.card-offcanva {
+    width: 100%;
+    background-color: var(--color-light);
+    border: 1px solid var(--color-blue);
+}
+
+.card-header-offcanva {
+    background-color: var(--color-blue);
+    color: var(--color-light);
+    text-align: center;
+}
+
+/* ----------- formulario ------------*/
+
+form {
+    color: var(--color-blue);
+}
+
+form:focus {
+    color: var(--color-blue-light);
+}
+
+/*------- button --------------*/
+
+.button {
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    background: var(--color-blue);
+    background-size: 400%;
+    color: var(--color-light);
+    border: none;
+    cursor: pointer;
+
+  }
+  
+  .button:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .button-content {
+    color: var(--color-light);
+    position: relative;
+    z-index: 1;
+    font-weight: 900;
+  }
+  
+  
+  .button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(82.3deg,
+        var(--color-blue) 10.8%,
+        var(--color-blue-light) 94.3%);
+    transition: all 0.475s;
+  }
+
+/* ------- card animadas --------------*/
+
+.service-card {
+    width: 200px;
+    perspective: 1000px;
+    height: 200px;
+}
+
+.service-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.service-card:hover .service-card-inner {
+    transform: rotateY(180deg);
+}
+
+.service-card-front,
+.service-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.service-card-front {
+    background: var(--color-blue);
+    color: var(--color-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    font-size: .5em;
+}
+
+.service-card-back {
+    background: var(--color-blue);
+    color: var(--color-light);
+    transform: rotateY(180deg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-content {
+    font-size: 1rem;
+}
+
+.tarjeta-back-content {
+    font-size: 1rem;
+}
+
+.hover-lift {
+    transition: transform 0.2s;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.tarjet-content {
+    font-size: 1.2rem;
+}
+
+.tarjet-back-content {
+    font-size: 1rem;
+}
+
+/* ------- texto inicio -------------*/
+
+.badge-inicio {
+    background-color: var(--color-light);
+    color: var(--color-blue);
+    font-size: 1.5rem;
+}
+
+/* --------- imagenes cards --------------*/
+
+.city {
+    position: relative;
+    padding: 0;
+    margin: 0 !important;
+    border-radius: 1em;
+    overflow: hidden;
+    width: 400px;
+    height: 470px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+.city .card-image {
+    width: 100%;
+    height: 470px;
+    overflow: hidden;
+}
+
+.city .card-image img {
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+}
+
+.city .card-content {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    min-height: 100px;
+    width: 100%;
+    transition: bottom .8s ease-in;
+    box-shadow: 0 -10px 10px rgba(39, 39, 39, 0.1);
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+}
+
+.city:hover .card-content {
+    bottom: -100%;
+}
+
+.city:hover .card-content h4,
+.city:hover .card-content h5 {
+   
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+}
+
+.city .card-content h4,
+.city .card-content h5 {
+    color: var(--color-dark);
+    text-transform: uppercase;
+    text-align: center;
+  
+
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 1s ease;
+}
+
+.city.card-content h5 {
+    transition: 0.5s;
+    font-weight: 200;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    position: relative;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.spinner-wrapper {
+    z-index: 5;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-item.loaded img {
+    opacity: 1;
+}
+
+.carousel-item.loaded .spinner-wrapper {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.carousel-inner h5 {
+    font-weight: 800;
+    color: var(--color-light);
+    text-shadow:
+    -1px -1px 0 var(--color-dark),  
+    1px -1px 0 var(--color-dark),  
+   -1px  1px 0 var(--color-dark),  
+    1px  1px 0 var(--color-dark);
+    
+}
+
+.icon-footer {
+    color: var(--color-blue);
+}
+
+.carousel-item {
+    position: relative;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    color: white;
+}
+
+.overlay-content h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.overlay-content p {
+    margin-bottom: 20px;
+}
+
+.overlay-content .btn {
+    padding: 10px 20px;
+}
+
+/* ------- formulario ------*/
+
+#price {
+    background-color: var(--color-light);
+    color: var(--color-blue);
+}
+
+
+#travelForm {
+    background-color: var(--color-light);
+}
+
+.icon-price i {
+    color: var(--color-blue);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+
+
+@media (max-width: 768px){
+
+    .badge-inicio {
+        font-size: 1rem;
+    }
+
+    .tarjet-content {
+        font-size: .9rem;
+    }
+
+    .tarjet-back-content {
+        font-size: .8rem;
+    }
+
+    .service-card {
+        width: 150px;
+        height: 150px;
+    }
+
+    .icon-wrapper {
+        width: 40px;
+        height: 60px;
+    }
+
+
+
+}
